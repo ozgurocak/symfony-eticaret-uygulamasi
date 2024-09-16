@@ -1,0 +1,58 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}Ürün Listesi{% endblock %}
+{% block main %}
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+<h1 class="mt-4">Ürün Listesi</h1>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Ürünler
+    </div>
+    <div class="card-body">
+        <i>Ürünleri düzenlemek için numaralarına tıklayın.</i>
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Ürün numarası</th>
+                    <th>Ürün ismi</th>
+                    <th>Açıklama</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>
+                    <th>Kategoriler</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Ürün numarası</th>
+                    <th>Ürün ismi</th>
+                    <th>Açıklama</th>
+                    <th>Fiyat</th>
+                    <th>Stok</th>
+                    <th>Kategoriler</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for product in products %}
+                <tr>
+                    <td><a href="/admin/edit-product/{{ product.id }}">{{ product.id }}</a></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.stock }}</td>
+                    <td>
+                        {% for category in product.getCategory() %}
+                        {{ category.getName() }}, 
+                        {% endfor %}
+                    </td>
+                    <td><a href="/admin/delete-product/{{ product.id }}">Sil</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script src="{{ asset('scripts/datatables-simple-demo.js') }}"></script>
+{% endblock %}

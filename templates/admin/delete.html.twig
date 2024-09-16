@@ -1,0 +1,9 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}{{ deletion_title }} Sil{% endblock %}
+{% block main %}
+<h1 class="mt-4">{{ deletion_title }} silmek istediğinizden emin misiniz?</h1>
+<form method="post" action="/admin/delete-{{ type }}/{{ item.id }}">
+    <input class="btn btn-dark mt-auto" style="margin: 5px;" type="submit" value="Evet" />
+</form>
+<a class="btn btn-dark mt-auto" style="margin: 5px;" href="/admin/{{ type }}-list">Hayır</a>
+{% endblock %}

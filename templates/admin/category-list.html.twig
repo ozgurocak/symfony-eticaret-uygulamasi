@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+{% block title %}Kategori Listesi{% endblock %}
+{% block main %}
+<link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+<h1 class="mt-4">Kategori Listesi</h1>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        Kategoriler
+    </div>
+    <div class="card-body">
+        <i>Kategorileri düzenlemek için numaralarına tıklayın.</i>
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Kategori numarası</th>
+                    <th>Kategori ismi</th>
+                    <th>Açıklama</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Kategori numarası</th>
+                    <th>Kategori ismi</th>
+                    <th>Açıklama</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for category in categories %}
+                <tr>
+                    <td><a href="/admin/edit-category/{{ category.id }}">{{ category.id }}</a></td>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td><a href="/admin/delete-category/{{ category.id }}">Sil</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script src="{{ asset('scripts/datatables-simple-demo.js') }}"></script>
+{% endblock %}

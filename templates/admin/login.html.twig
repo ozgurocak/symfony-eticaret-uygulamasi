@@ -1,0 +1,19 @@
+{% extends 'admin/userbase.html.twig' %}
+{% block title %}Giriş Yap{% endblock %}
+{% block op %}Giriş Yap{% endblock %}
+{% block form %}
+    {{ form_start(form) }}
+        <div class="form-floating mb-3">
+        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(form.username) }}
+        </div>
+        <div class="form-floating mb-3">
+        {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+        {{ form_label(form.password) }}
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+        {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+{% block userlink %}<a href="/admin/register">Hesabınız yoksa kayıt olun.</a>{% endblock %}
